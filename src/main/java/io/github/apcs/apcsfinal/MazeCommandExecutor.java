@@ -27,8 +27,8 @@ public class MazeCommandExecutor implements org.bukkit.command.CommandExecutor {
 		}
 		if (sender instanceof Player) {
 			Player player = (Player) sender;
-			int width = Integer.parseInt(args[1]);
-			int height = Integer.parseInt(args[2]);
+			int width = (Integer.parseInt(args[1])-1)/2;
+			int height = (Integer.parseInt(args[2])-1)/2;
 			int depth = Integer.parseInt(args[3]);
 			Material mat = Material.getMaterial(args[4].toUpperCase());
 			
