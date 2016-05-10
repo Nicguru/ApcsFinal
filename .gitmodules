@@ -1,0 +1,3 @@
+[submodule "src/main/java/amazeing"]
+	path = src/main/java/amazeing
+	url = https://github.com/Nicguru/amazeing.git

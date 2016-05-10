@@ -1,0 +1,9 @@
+name: ApcsFinal
+main: io.github.apcs.apcsfinal.ApcsFinal
+version: 0.0.1-SNAPSHOT
+commands:
+    maze:
+        description: Generates a stone maze
+        usage: /maze [type] [width] [length] [height] [material]
+        permission: ApcsFinal.maze
+        permission-message: You don't have permission.
