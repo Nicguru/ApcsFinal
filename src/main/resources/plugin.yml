@@ -7,3 +7,8 @@ commands:
         usage: /maze [type] [width] [length] [height] [material]
         permission: ApcsFinal.maze
         permission-message: You don't have permission.
+    shape:
+        description: Generates a shape
+        usage: /shape [type] [length] <width> <height> [material]
+        permission: ApcsFinal.shape
+        permission-message: You don't have permission.

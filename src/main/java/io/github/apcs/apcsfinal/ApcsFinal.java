@@ -6,6 +6,7 @@ public class ApcsFinal extends JavaPlugin {
 	
 	public void onEnable() {
 		this.getCommand("maze").setExecutor(new MazeCommandExecutor(this));
+		this.getCommand("shape").setExecutor(new BuildingCommandExecutor(this));
 	}
 
 }
