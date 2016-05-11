@@ -12,3 +12,8 @@ commands:
         usage: /shape [type] [length] <width> <height> [material]
         permission: ApcsFinal.shape
         permission-message: You don't have permission.
+    spell:
+        description: Casts a spell
+        usage: /spell [cast/set] <spell>
+        permission: ApcsFinal.spell
+        permission-message: You don't have permission.
