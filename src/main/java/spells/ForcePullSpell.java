@@ -23,7 +23,7 @@ public class ForcePullSpell extends Spell {
           b.subtract(a);
           b.setY(1);
           b.normalize();
-          b.multiply(-5.0D);
+          b.multiply(-2.0D);
           entity.setVelocity(b);
         }
 		// TODO Auto-generated method stub
