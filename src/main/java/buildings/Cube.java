@@ -15,9 +15,7 @@ public class Cube extends Building {
 		for (int x = 0; x < getLength(); x++) {
 			for (int y = 0; y < getHeight(); y++) {
 				for (int z = 0; z < getWidth(); z++) {
-					Location loc = origin.clone().add(x, y, z);
-					Block b = loc.getBlock();
-					b.setType(getMaterial());
+					addLoc(origin.clone().add(x, y, z));
 				}
 			}
 		}

@@ -17,9 +17,7 @@ public class Sphere extends Building {
 			for (int y = -getHeight()+1; y < getHeight(); y++) {
 				for (int z = -getWidth()+1; z < getWidth(); z++) {
 					if (calculateDistance(x,y,z) <= rsq) {
-						Location loc = origin.clone().add(x, y, z);
-						Block b = loc.getBlock();
-						b.setType(getMaterial());
+						addLoc(origin.clone().add(x, y, z));
 					}
 				}
 			}

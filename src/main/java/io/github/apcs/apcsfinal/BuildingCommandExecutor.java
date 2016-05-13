@@ -6,11 +6,15 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import buildings.Building;
 import buildings.Cube;
+import buildings.Cylinder;
 import buildings.Sphere;
+import buildings.Triangle;
 
 public class BuildingCommandExecutor implements CommandExecutor {
 	private final ApcsFinal plugin;
+	private static Building struct;
 
 	
 	public BuildingCommandExecutor(ApcsFinal plugin) {
@@ -29,17 +33,34 @@ public class BuildingCommandExecutor implements CommandExecutor {
 				int size = Integer.parseInt(args[1]);
 				String mat = args[2];
 				Location loc = player.getLocation().add(5, 0, 5);
-				new Cube(size, loc, mat);
+				struct = new Cube(size, loc, mat);
 			}
 			else if (args[0].equalsIgnoreCase("sphere")) {
 				int size = Integer.parseInt(args[1]);
 				String mat = args[2];
 				Location loc = player.getLocation().add(size, size, size);
-				new Sphere(size, loc, mat);
+				struct = new Sphere(size, loc, mat);
 			}
+			else if (args[0].equalsIgnoreCase("triangle")) {
+				int length = Integer.parseInt(args[1]);
+				int width = Integer.parseInt(args[2]);
+				String mat = args[3];
+				Location loc = player.getLocation();
+				struct = new Triangle(length, width, loc, mat);
+			}
+			else if (args[0].equalsIgnoreCase("cylinder")) {
+				int size = Integer.parseInt(args[1]);
+				int height = Integer.parseInt(args[2]);
+				String mat = args[3];
+				Location loc = player.getLocation();
+				struct = new Cylinder(size, height, loc, mat);
+				player.teleport(player.getLocation().add(0, height, 0));
+			}
+
 			else {
 				return false;
 			}
+			struct.buildStructure();
 			return true;
 		}
 		// TODO Auto-generated method stub
