@@ -2,6 +2,7 @@ package spells;
 
 import java.util.List;
 
+import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -10,7 +11,7 @@ import org.bukkit.util.Vector;
 public class ForcePushSpell extends Spell {
 	
 	public ForcePushSpell() {
-		super("ForcePush");
+		super("ForcePush", "Screw Jedi Training. Use this spell to push enemies away with the Force.");
 	}
 
 	@Override
@@ -27,6 +28,7 @@ public class ForcePushSpell extends Spell {
           b.multiply(5.0D);
           entity.setVelocity(b);
         }
+        p.getWorld().playEffect(p.getLocation(), Effect.BLAZE_SHOOT, 1);
 		// TODO Auto-generated method stub
 
 	}

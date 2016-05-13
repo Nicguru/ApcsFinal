@@ -9,7 +9,7 @@ import org.bukkit.util.Vector;
 public class LightningSpell extends Spell {
 
 	public LightningSpell() {
-		super("Lightning");
+		super("Lightning" , "Who needs Thor? Just use this spell to smite thine enemies.");
 	}
 
 	@Override

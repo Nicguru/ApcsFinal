@@ -11,6 +11,7 @@ import spells.BoostSpell;
 import spells.FireballSpell;
 import spells.ForcePullSpell;
 import spells.ForcePushSpell;
+import spells.FreezeSpell;
 import spells.LightningSpell;
 import spells.Spell;
 
@@ -27,6 +28,7 @@ public class SpellCommandExecutor implements CommandExecutor {
 		spellList.add(new ForcePushSpell());
 		spellList.add(new ForcePullSpell());
 		spellList.add(new BoostSpell());
+		spellList.add(new FreezeSpell());
 	}
 
 	@Override
@@ -51,10 +53,13 @@ public class SpellCommandExecutor implements CommandExecutor {
 			else if (args[0].equalsIgnoreCase("list")) {
 				for (Spell s: spellList) {
 					player.sendMessage(s.getName());
+					player.sendMessage(s.getDesc());
+					player.sendMessage("");
 				}
 			}
 			else if (args[0].equalsIgnoreCase("active")) {
 				player.sendMessage(spell.getName() + " is the active spell");
+				player.sendMessage(spell.getDesc());
 			}
 			return true;
 		}

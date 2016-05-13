@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 public class FireballSpell extends Spell {
 	
 	public FireballSpell() {
-		super("Fireball");
+		super("Fireball", "Burn baby burn. Use this spell to launch a fireball that incinerates enemies.");
 	}
 
 	@Override

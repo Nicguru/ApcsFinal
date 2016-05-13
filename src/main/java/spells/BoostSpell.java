@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 public class BoostSpell extends Spell {
 
 	public BoostSpell() {
-		super("Boost");
+		super("Boost", "Wheeee! Use this spell to launch in the direction you are facing. Just... watch the landing.");
 	}
 
 	@Override

@@ -9,7 +9,7 @@ import org.bukkit.util.Vector;
 
 public class ForcePullSpell extends Spell {
 	public ForcePullSpell() {
-		super("ForcePull");
+		super("ForcePull" , "Finally, you can reach that remote. Use this spell to pull enemies and objects toward you with the Force.");
 	}
 
 	@Override
