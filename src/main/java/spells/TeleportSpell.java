@@ -1,8 +1,9 @@
 package spells;
 
 import org.bukkit.Location;
-import org.bukkit.entity.Entity;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 
 /**
  * Class that represents a castable spell, teleporting the player where they are facing
@@ -26,9 +27,17 @@ public class TeleportSpell extends Spell {
 	 */
 	public void cast(Player p){
 		Location loc = p.getEyeLocation();
-		Entity player = (Entity)p;
-		player.teleport(loc);
-		//write warning if place has a drop/no blocks
+		Vector dir = loc.getDirection().normalize();
+		for (int i = 0; i <= 200; i++) {
+			Block b = loc.add(dir).getBlock();
+			if (b.getType().isSolid()) {
+				while (loc.add(0, 1, 0).getBlock().getType().isSolid()) {
+					
+				}
+				p.teleport(loc);
+				break;
+			}
+		}
 	}
 	
 	
