@@ -7,6 +7,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import spells.AimAndGainSpell;
+import spells.DeathBlossomSpell;
 import spells.BoostSpell;
 import spells.FireballSpell;
 import spells.ForcePullSpell;
@@ -14,7 +16,13 @@ import spells.ForcePushSpell;
 import spells.FreezeSpell;
 import spells.LightningSpell;
 import spells.Spell;
+import spells.TeleportSpell;
 
+/**
+ * Handles the execution of the /spell command
+ * @author Nicholas
+ *
+ */
 public class SpellCommandExecutor implements CommandExecutor {
 	private ApcsFinal plugin;
 	private static Spell spell = new FireballSpell();
@@ -29,15 +37,23 @@ public class SpellCommandExecutor implements CommandExecutor {
 		spellList.add(new ForcePullSpell());
 		spellList.add(new BoostSpell());
 		spellList.add(new FreezeSpell());
+		spellList.add(new TeleportSpell());
+		spellList.add(new AimAndGainSpell());
+		spellList.add(new DeathBlossomSpell());
+
 	}
 
 	@Override
+	/**
+	 * Handles the execution of the command
+	 */
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (args.length < 1) {
 			return false;
 		}
 		if (sender instanceof Player) {
 			Player player = (Player) sender;
+			//sets the spell type to spell with given name
 			if (args[0].equalsIgnoreCase("set")) {
 				for (Spell s : spellList) {
 					if (s.getName().equalsIgnoreCase(args[1])) {
@@ -46,10 +62,12 @@ public class SpellCommandExecutor implements CommandExecutor {
 				}
 				player.sendMessage("Spell set to " + spell.getName());
 			}
+			//casts the set spell
 			else if (args[0].equalsIgnoreCase("cast")) {
 				spell.cast(player);
 				player.sendMessage("Cast " + spell.getName());
 			}
+			//prints a list of all spells and spell descriptions
 			else if (args[0].equalsIgnoreCase("list")) {
 				for (Spell s: spellList) {
 					player.sendMessage(s.getName());
@@ -57,6 +75,7 @@ public class SpellCommandExecutor implements CommandExecutor {
 					player.sendMessage("");
 				}
 			}
+			//prints the active spell
 			else if (args[0].equalsIgnoreCase("active")) {
 				player.sendMessage(spell.getName() + " is the active spell");
 				player.sendMessage(spell.getDesc());

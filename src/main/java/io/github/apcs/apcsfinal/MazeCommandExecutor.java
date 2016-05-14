@@ -10,17 +10,28 @@ import amazeing.MazeGen;
 import amazeing.MazeGenDF;
 import amazeing.MazeGenKruskal;
 
-
+/**
+ * Handles the execution of the /maze command
+ * @author Nicholas
+ *
+ */
 public class MazeCommandExecutor implements org.bukkit.command.CommandExecutor {
 	private final ApcsFinal plugin;
 	private final MazeGen MAZE_GEN_DF = new MazeGenDF();
 	private final MazeGen MAZE_GEN_KRUSKAL = new MazeGenKruskal();
 
+	/**
+	 * Initializes the plugin
+	 * @param plugin
+	 */
 	public MazeCommandExecutor(ApcsFinal plugin) {
 		this.plugin = plugin;
 	}
 
 	@Override
+	/**
+	 * Handles the execution of the /maze command
+	 */
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (args.length < 4) {
 			return false;
@@ -33,16 +44,18 @@ public class MazeCommandExecutor implements org.bukkit.command.CommandExecutor {
 			Material mat = Material.getMaterial(args[4].toUpperCase());
 			
 			MazeGen mazegen;
+			//Sets the maze generator to "depth first"
 			if (args[0].equalsIgnoreCase("DF")) {
 				mazegen = MAZE_GEN_DF;
 			}
+			//Sets the maze generator to "kruskal"
 			else if (args[0].equalsIgnoreCase("Kruskal")) {
 				mazegen = MAZE_GEN_KRUSKAL;
 			}
 			else {
 				return false;
 			}
-			
+			//Generates the maze array, places the blocks
 			boolean[][] maze = mazegen.generateMaze(width, height);
 			Location origin = player.getLocation().add(1, -1, 1);
 			for (int x = 0; x < maze.length; x++) {

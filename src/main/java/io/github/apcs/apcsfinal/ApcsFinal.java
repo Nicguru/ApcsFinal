@@ -2,8 +2,16 @@ package io.github.apcs.apcsfinal;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+/**
+ * Main class for the plugin
+ * @author Nicholas
+ *
+ */
 public class ApcsFinal extends JavaPlugin {
 	
+	/**
+	 * Enables the command executors for the commands when the plugin is enabled
+	 */
 	public void onEnable() {
 		this.getCommand("maze").setExecutor(new MazeCommandExecutor(this));
 		this.getCommand("shape").setExecutor(new BuildingCommandExecutor(this));
