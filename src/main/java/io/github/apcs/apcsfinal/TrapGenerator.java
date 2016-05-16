@@ -18,7 +18,7 @@ public class TrapGenerator {
  * @return true if a trap is generated, false if not
  */
 	public static boolean randomTrap(Block b, int chance){
-		int num = r.nextInt(chance);
+		int num = r.nextInt(100/chance);
 		if(num == 0){
 			createTrap(b);
 			return true;
