@@ -2,11 +2,14 @@ package io.github.apcs.apcsfinal;
 
 import java.util.ArrayList;
 
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEvent;
 import spells.AimAndGainSpell;
 import spells.DeathBlossomSpell;
 import spells.BoostSpell;
@@ -23,7 +26,7 @@ import spells.TeleportSpell;
  * @author Nicholas
  *
  */
-public class SpellCommandExecutor implements CommandExecutor {
+public class SpellCommandExecutor implements CommandExecutor, Listener {
 	private ApcsFinal plugin;
 	private static Spell spell = new FireballSpell();
 	private static ArrayList<Spell> spellList;
@@ -85,5 +88,18 @@ public class SpellCommandExecutor implements CommandExecutor {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	@EventHandler
+	public void onPlayerInteractBlock(PlayerInteractEvent event) {
+		Player player = event.getPlayer();
+		if (player.getItemInHand().getType() == Material.STICK) {
+			spell.cast(player);
+		}
+		
+	}
+
+	
+
+	
 
 }
