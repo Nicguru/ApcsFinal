@@ -2,6 +2,7 @@ package io.github.apcs.apcsfinal;
 
 import java.util.ArrayList;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -73,9 +74,9 @@ public class SpellCommandExecutor implements CommandExecutor, Listener {
 			//prints a list of all spells and spell descriptions
 			else if (args[0].equalsIgnoreCase("list")) {
 				for (Spell s: spellList) {
-					player.sendMessage(s.getName());
-					player.sendMessage(s.getDesc());
 					player.sendMessage("");
+					player.sendMessage(ChatColor.BOLD + "" + ChatColor.BLUE + s.getName());
+					player.sendMessage(ChatColor.AQUA + s.getDesc());
 				}
 			}
 			//prints the active spell

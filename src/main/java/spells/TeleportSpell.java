@@ -31,9 +31,10 @@ public class TeleportSpell extends Spell {
 		for (int i = 0; i <= 200; i++) {
 			Block b = loc.add(dir).getBlock();
 			if (b.getType().isSolid()) {
-				while (loc.add(0, 1, 0).getBlock().getType().isSolid()) {
-					
+				do {
+					loc.add(0, 1, 0);
 				}
+				while (loc.getBlock().getType().isSolid());
 				p.teleport(loc);
 				break;
 			}

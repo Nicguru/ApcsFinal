@@ -73,6 +73,7 @@ public class BuildingCommandExecutor implements CommandExecutor {
 				player.teleport(player.getLocation().add(0, height, 0));
 			}
 
+
 			else {
 				return false;
 			}
