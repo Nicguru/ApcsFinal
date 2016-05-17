@@ -64,7 +64,7 @@ public class SpellCommandExecutor implements CommandExecutor, Listener {
 						spell = s;
 					}
 				}
-				player.sendMessage("Spell set to " + spell.getName());
+				player.sendMessage("Spell set to " + ChatColor.BLUE + "" + ChatColor.BOLD + spell.getName());
 			}
 			//casts the set spell
 			else if (args[0].equalsIgnoreCase("cast")) {

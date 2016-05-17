@@ -41,63 +41,66 @@ public class MazeCommandExecutor implements org.bukkit.command.CommandExecutor {
 		}
 		if (sender instanceof Player) {
 			Player player = (Player) sender;
-			int width = (Integer.parseInt(args[1]) - 1) / 2;
-			int height = (Integer.parseInt(args[2]) - 1) / 2;
-			int depth = Integer.parseInt(args[3]);
-			Material mat = Material.getMaterial(args[4].toUpperCase());
-			boolean traps = false;
-			int chance = 2;
-			if (args.length > 5 && args[5].equalsIgnoreCase("traps")) {
-				traps = true;
-				chance = Integer.parseInt(args[6]);
-			}
+			try {
+				int width = (Integer.parseInt(args[1]) - 1) / 2;
+				int height = (Integer.parseInt(args[2]) - 1) / 2;
+				int depth = Integer.parseInt(args[3]);
+				Material mat = Material.getMaterial(args[4].toUpperCase());
+				boolean traps = false;
+				int chance = 2;
+				if (args.length > 5 && args[5].equalsIgnoreCase("traps")) {
+					traps = true;
+					chance = Integer.parseInt(args[6]);
+				}
 
-			MazeGen mazegen;
-			// Sets the maze generator to "depth first"
-			if (args[0].equalsIgnoreCase("DF")) {
-				mazegen = MAZE_GEN_DF;
-			}
-			// Sets the maze generator to "kruskal"
-			else if (args[0].equalsIgnoreCase("Kruskal")) {
-				mazegen = MAZE_GEN_KRUSKAL;
-			} else {
-				return false;
-			}
-			// Generates the maze array, places the blocks
-			boolean[][] maze = mazegen.generateMaze(width, height);
-			Location origin = player.getLocation().add(1, -1, 1);
-			for (int x = 0; x < maze.length; x++) {
-				for (int z = 0; z < maze[x].length; z++) {
-					Location loc = origin.clone().add(x, 0, z);
-					Block b;
-					for (int y = 0; y < 1 + depth; y++) {
-						loc.add(0, 1, 0);
-						b = loc.getBlock();
-						Material m;
-						if (y == 0) {
-							m = Material.DIRT;
-						} else if (maze[x][z]) {
-							m = Material.AIR;
-						} else {
-							m = mat;
+				MazeGen mazegen;
+				// Sets the maze generator to "depth first"
+				if (args[0].equalsIgnoreCase("DF")) {
+					mazegen = MAZE_GEN_DF;
+				}
+				// Sets the maze generator to "kruskal"
+				else if (args[0].equalsIgnoreCase("Kruskal")) {
+					mazegen = MAZE_GEN_KRUSKAL;
+				} else {
+					return false;
+				}
+				// Generates the maze array, places the blocks
+				boolean[][] maze = mazegen.generateMaze(width, height);
+				Location origin = player.getLocation().add(1, -1, 1);
+				for (int x = 0; x < maze.length; x++) {
+					for (int z = 0; z < maze[x].length; z++) {
+						Location loc = origin.clone().add(x, 0, z);
+						Block b;
+						for (int y = 0; y < 1 + depth; y++) {
+							loc.add(0, 1, 0);
+							b = loc.getBlock();
+							Material m;
+							if (y == 0) {
+								m = Material.DIRT;
+							} else if (maze[x][z]) {
+								m = Material.AIR;
+							} else {
+								m = mat;
+							}
+							b.setType(m);
+
 						}
-						b.setType(m);
-
-					}
-					//Determines trap placement
-					if (traps && maze[x][z]
-							&& x > 0 && x < maze.length-1
-							&& z > 0 && z < maze[x].length-1) {
-						loc.subtract(0, depth, 0);
-						b = loc.getBlock();
-						TrapGenerator.randomTrap(b, chance);
+						// Determines trap placement
+						if (traps && maze[x][z] && x > 0 && x < maze.length - 1 && z > 0 && z < maze[x].length - 1) {
+							loc.subtract(0, depth, 0);
+							b = loc.getBlock();
+							TrapGenerator.randomTrap(b, chance);
+						}
 					}
 				}
-			}
 
-			player.sendMessage("[APCS Final] " + args[0].toUpperCase() + " maze of size " + width + " x " + height
-					+ " x " + depth + " made of " + mat.name() + " generated!");
-			return true;
+				player.sendMessage("[APCS Final] " + args[0].toUpperCase() + " maze of size " + width + " x " + height
+						+ " x " + depth + " made of " + mat.name() + " generated!");
+				return true;
+			} catch (Exception e) {
+				player.sendMessage("Failed to generate maze. Maybe check the command usage?");
+				return false;
+			}
 		}
 		sender.sendMessage("Failed to generate maze");
 		return false;
